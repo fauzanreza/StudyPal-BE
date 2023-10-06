@@ -1,0 +1,19 @@
+{
+  "name": "studypal-be",
+  "version": "1.0.0",
+  "description": "Learning Platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "study",
+    "learn",
+    "course"
+  ],
+  "author": "Fauzan, Leo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
