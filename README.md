@@ -1,0 +1,2 @@
+# StudyPal-BE
+Learning Platform
