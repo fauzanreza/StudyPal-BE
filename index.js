@@ -1,8 +1,7 @@
-const express = require('express')
-const app = express()
+import {config} from "./bin/infra/global_config.js"
+import { AppServer } from "./bin/app/server.js";
+const port = config.port;
 
-app.get('/', function (req, res) {
-  res.send('Hello World')
+AppServer.listen(port, () => {
+    console.log(`App listening on port ${port}`)
 })
-
-app.listen(3000)
