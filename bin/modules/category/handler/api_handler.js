@@ -1,4 +1,4 @@
-import * as db from '../../../helpers/database/connection.js'
+import * as db from '../../../helpers/databases/connection.js'
 
 const getAllCategory = async (req, res, next) => {
     await db.query(`SELECT * FROM category`, (err, result) => {
