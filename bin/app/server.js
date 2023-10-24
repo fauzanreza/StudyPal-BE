@@ -12,13 +12,14 @@ AppServer.get('/', function (req, res) {
   res.send(`Welcome to ${project.name} Server`)
 })
 
-db.getClient(err => {
-    if(err){
-        console.log(err.message)
-    }
-})
+// db.getClient(err => {
+//     if(err){
+//         console.log(err.message)
+//     }
+// })
 
 // Category API
+AppServer.get('/api/newcategory', categoryHandler.getnewAllCategory)
 AppServer.get('/api/category', categoryHandler.getAllCategory)
 AppServer.post('/api/category', categoryHandler.insertCategory)
 AppServer.patch('/api/category/:id', categoryHandler.updateCategory)

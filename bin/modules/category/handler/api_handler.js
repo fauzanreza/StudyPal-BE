@@ -1,4 +1,8 @@
 import * as db from '../../../helpers/databases/connection.js'
+import wrapper from '../../../helpers/utils/wrapper.js';
+import {schema} from '../repositories/queries/query_model.js'
+import query_handler from '../repositories/queries/query_handler.js';
+
 
 const getAllCategory = async (req, res, next) => {
     await db.query(`SELECT * FROM category`, (err, result) => {
@@ -44,9 +48,28 @@ const deleteCategory = async (req, res, next) => {
     db.releaseClient;
   }
 
+
+  // ===========================================
+  const getnewAllCategory = async (req, res, next) => {
+    // try {
+    //     const result = query_handler.getAllCategory();
+    //     wrapper.success(res, 200, 'OK', 'bunch of articles', JSON.stringify(result), null);
+    //   } catch (err) {
+    //     wrapper.error(res, err);
+    //   };
+    query_handler.getAllCategory((err, result) => {
+        if (err) {
+            wrapper.error(res, err);
+        } else {
+            wrapper.success(res, 200, 'OK', 'Category Found', result.rows, null)
+        }
+    })
+  }
+
 export default {
     getAllCategory,
     insertCategory,
     updateCategory,
-    deleteCategory
+    deleteCategory,
+    getnewAllCategory
   }
