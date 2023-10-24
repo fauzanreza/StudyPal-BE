@@ -39,7 +39,7 @@ function error(res, err) {
     res.end();
   }
   
-  function success(res, code, status, message, data, meta) {
+  function success(res, code, message, data) {
     if (isNaN(code)) {
       code = 200;
     }
@@ -47,17 +47,17 @@ function error(res, err) {
       code = 200;
     }
   
-    if (!meta) {
-      meta = null;
-    }
+    // if (!meta) {
+    //   meta = null;
+    // }
   
     const response = {
       success: true,
       data: data,
-      status: status,
+      // status: status,
       message: message,
       code: code,
-      meta: meta
+      // meta: meta
     }
   
     res.status(response.code).json(response)

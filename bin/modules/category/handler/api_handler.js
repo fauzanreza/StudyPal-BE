@@ -51,17 +51,11 @@ const deleteCategory = async (req, res, next) => {
 
   // ===========================================
   const getnewAllCategory = async (req, res, next) => {
-    // try {
-    //     const result = query_handler.getAllCategory();
-    //     wrapper.success(res, 200, 'OK', 'bunch of articles', JSON.stringify(result), null);
-    //   } catch (err) {
-    //     wrapper.error(res, err);
-    //   };
     query_handler.getAllCategory((err, result) => {
         if (err) {
             wrapper.error(res, err);
         } else {
-            wrapper.success(res, 200, 'OK', 'Category Found', result.rows, null)
+            wrapper.success(res, 200, 'Category Found', result.rows, null)
         }
     })
   }
