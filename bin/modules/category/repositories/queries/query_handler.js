@@ -12,15 +12,6 @@ const getAllCategory = async (callback) => {
     }
    
   }
-//   const getAllCategory = async (req, res, next) => {
-//     const recordset = await db.query(`SELECT * FROM category`, (err, result) => {
-//         if(!err){
-//             res.send(result.rows)
-//         }
-//     });
-//     db.releaseClient;
-//     return recordset;
-//   }
 
 export default {
     getAllCategory
