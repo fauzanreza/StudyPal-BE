@@ -1,30 +1,17 @@
 'use strict';
 
-// const response = (res,type,result,message,code) => {
-//     if(message){
-//         result.message = message;
-//     }
-//     if(code){
-//         result.code = code;
-//     }
-//     let status = false;
-//     switch(type){
-//     case 'fail':
-//         status = false;
-//         break;
-//     case 'success':
-//         status = true;
-//         break;
-//     }
-//     res.send(result.code, 
-//         {
-//             success: status,
-//             data: result.data,
-//             message: result.message,
-//             code: result.code
-//         }
-//     );
-// }
+function errorValidation(res, code, message) {
+  const response = {
+    success: false,
+    data: null,
+    // status: err.status,
+    message: message,
+    code: code
+  }
+
+  res.status(response.code).json(response)
+  res.end();
+}
 
 function error(res, err) {
     const response = {
@@ -66,6 +53,7 @@ function error(res, err) {
 
 
 export default {
+    errorValidation,
     error,
     success
   }

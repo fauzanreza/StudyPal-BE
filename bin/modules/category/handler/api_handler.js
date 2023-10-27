@@ -13,10 +13,12 @@ import validation from '../repositories/commands/command_model.js'
   }
 
   const insertCategory = async (req, res, next) => {
-    // const {category_name, description} = req.body
-    const { error, value } = validation.schema.validate(req.body);
+    const { error, value } = validation.schema.validate(req.body, {
+        abortEarly: false,
+      });
     if(error){
-        wrapper.error(res, 400, 'Validation error: ' + error.details[0].message);
+        const validationErrorMessage = error.details.map(detail => detail.message).join(', ');
+        wrapper.errorValidation(res, 400, 'Validation error: ' + validationErrorMessage);
     } else{
     command_handler.insertCategory(value, (err, result) => {
         if (err) {
@@ -29,9 +31,12 @@ import validation from '../repositories/commands/command_model.js'
 
   const updateCategory = async (req, res, next) => {
     const id = req.params.id
-    const { error, value } = validation.schema.validate(req.body);
+    const { error, value } = validation.schema.validate(req.body, {
+        abortEarly: false,
+      });
     if(error){
-        wrapper.error(res, 400, 'Validation error: ' + error.details[0].message);
+        const validationErrorMessage = error.details.map(detail => detail.message).join(', ');
+        wrapper.errorValidation(res, 400, 'Validation error: ' + validationErrorMessage);
     } else{
         command_handler.updateCategory(id, value, (err, result) => {
             if (err) {
