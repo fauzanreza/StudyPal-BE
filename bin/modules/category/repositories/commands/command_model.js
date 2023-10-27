@@ -5,6 +5,6 @@ const schema = Joi.object({
     description: Joi.string().optional()
 })
 
-export {
+export default{
     schema
 }
