@@ -3,11 +3,17 @@ import query_handler from '../repositories/queries/query_handler.js';
 import command_handler from '../repositories/commands/command_handler.js';
 import validation from '../repositories/commands/command_model.js'
   const getAllCategory = async (req, res, next) => {
-    query_handler.getAllCategory((err, result) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+
+    query_handler.getAllCategory(page, limit,(err, result) => {
         if (err) {
             wrapper.error(res, err);
         } else {
-            wrapper.success(res, 200, 'Categories is Found', result.rows, null)
+            const data = result.rows;
+            const totalCount = parseInt(result.totalCount); // Use totalCount from the modified query.js
+            const totalPages = result.totalPages;
+            wrapper.success(res, 200, 'Categories is Found', data, { page, limit, totalPages, totalCount })
         }
     })
   }
