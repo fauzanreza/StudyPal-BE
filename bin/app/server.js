@@ -1,12 +1,16 @@
 // const express = require('express')
 import express from "express";
-import "dotenv/config"
+import "dotenv/config";
+import jwtAuth from "../auth/jwt_auth_helper.js"
 import categoryHandler from "../modules/category/handler/api_handler.js";
 import project from "../../package.json" assert { type: "json" };
 const AppServer = express()
 const port = process.env.PORT;
 
 AppServer.use(express.json());
+// const authenticate = (req, res, next) => {
+//   const token = req.header('Authorization');
+// }
 AppServer.get('/', function (req, res) {
   res.send(`Welcome to ${project.name} Server`)
 })

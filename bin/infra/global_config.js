@@ -18,7 +18,8 @@ const config = {
         max:  parseInt(process.env.MAX),
         idleTimeoutMillis: parseInt(process.env.IDLE_TIMEOUT),
         connectionTimeoutMillis: parseInt(process.env.CONNECTION_TIMEOUT)
-    }
+    },
+    key: process.env.SECRET_KEY,
   };
   
   const store = new confidence.Store(config);
