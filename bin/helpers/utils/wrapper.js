@@ -26,7 +26,7 @@ function error(res, err) {
     res.end();
   }
   
-  function success(res, code, message, data) {
+  function success(res, code, message, data, meta) {
     if (isNaN(code)) {
       code = 200;
     }
@@ -34,9 +34,9 @@ function error(res, err) {
       code = 200;
     }
   
-    // if (!meta) {
-    //   meta = null;
-    // }
+    if (!meta) {
+      meta = null;
+    }
   
     const response = {
       success: true,
@@ -44,7 +44,7 @@ function error(res, err) {
       // status: status,
       message: message,
       code: code,
-      // meta: meta
+      meta: meta
     }
   
     res.status(response.code).json(response)
